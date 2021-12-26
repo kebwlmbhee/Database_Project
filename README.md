@@ -80,7 +80,7 @@
 ## E-R_Diagram
 ![E-R Diagram](ER.png)
 
-## Relation_Model
+## Relational_Model
 ![Relational Model](Relational.png)
 
 ## [來源](https://ticp.motc.gov.tw/ConvergeProj/dataService/viewdata?setId=00974&title=%E8%87%AA%E5%8B%95%E6%B0%A3%E8%B1%A1%E7%AB%99-%E6%B0%A3%E8%B1%A1%E8%A7%80%E6%B8%AC%E8%B3%87%E6%96%99&metadata=00974)
