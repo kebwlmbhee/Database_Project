@@ -6,6 +6,7 @@
 - [系統功能性分析](#系統功能性分析)
 - [E-R_Diagram](#E-R_Diagram)
 - [Relational_Model](#Relational_Model)
+- [系統架構](#系統架構)
 - [來源](#來源)
 
 
@@ -82,5 +83,17 @@
 
 ## Relational_Model
 ![Relational Model](Relational.png)
+
+## 系統架構
+| System   | Schema               |
+|----------|----------------------|
+| 系統功能 | CRUD & Query         |
+| 開發語言 |  HTML, PHP           |
+| DBMS     | MySQL                |
+| 工具     | XAMPP                |
+| 模組     | Apache Server, MySQL |
+
+![System](System.png)
+
 
 ## [來源](https://ticp.motc.gov.tw/ConvergeProj/dataService/viewdata?setId=00974&title=%E8%87%AA%E5%8B%95%E6%B0%A3%E8%B1%A1%E7%AB%99-%E6%B0%A3%E8%B1%A1%E8%A7%80%E6%B8%AC%E8%B3%87%E6%96%99&metadata=00974)
