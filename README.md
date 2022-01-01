@@ -85,13 +85,13 @@
 ![Relational Model](Relational.png)
 
 ## 系統架構
-| System   | Schema               |
-|----------|----------------------|
-| 系統功能 | CRUD & Query         |
-| 開發語言 |  HTML, PHP           |
-| DBMS     | MySQL                |
-| 工具     | XAMPP                |
-| 模組     | Apache Server, MySQL |
+| System   | Schema                       |
+|----------|------------------------------|
+| 系統功能 | CRUD & Query                 |
+| 開發語言 |  HTML, CSS, javascript, PHP  |
+| DBMS     | MySQL                        |
+| 工具     | XAMPP                        |
+| 模組     | Apache Server, MySQL         |
 
 ![System](System.png)
 
