@@ -73,7 +73,9 @@ if($db_name == "datetime") {
         echo "<td>".$row_result['InfoDate']."</td>";
         echo "<td>".$row_result['InfoTime']."</td>";
         echo "<td><a href='update.php'>修改</a> ";
-        echo "<a href='delete.php'>刪除</a></td>";
+        echo "<a href='delete.php?"
+                        ."chosen_db=datetime&InfoDate=$row_result[InfoDate] & InfoTime=$row_result[InfoTime]"
+                        ."'>刪除</a></td>";
         echo "</tr>";
     }
 }
@@ -89,7 +91,10 @@ else if($db_name == "location"){
         echo "<td>".$row_result['Town']."</td>";
         echo "<td>".$row_result['TownSn']."</td>";
         echo "<td><a href='update.php'>修改</a> ";
-        echo "<a href='delete.php'>刪除</a></td>";
+        echo "<a href='delete.php?"
+                        ."chosen_db=location & City=$row_result[City] & CitySn=$row_result[CitySn]&"
+                        ."Town=$row_result[Town] & TownSn=$row_result[TownSn]"
+                        ."'>刪除</a></td>";
         echo "</tr>";
     }
 }
@@ -105,7 +110,10 @@ else if($db_name == "note"){
         echo "<td>".$row_result['N_StationID']."</td>";
         echo "<td>".$row_result['N_Time']."</td>";
         echo "<td><a href='update.php'>修改</a> ";
-        echo "<a href='delete.php'>刪除</a></td>";
+        echo "<a href='delete.php?"
+                        ."chosen_db=note & H_FX=$row_result[H_FX] & H_XD=$row_result[H_XD]&"
+                        ."N_StationID=$row_result[N_StationID] & N_Time=$row_result[N_Time]"
+                        ."'>刪除</a></td>";
         echo "</tr>";
     }
 }
@@ -127,7 +135,11 @@ else if($db_name == "obsweather"){
         echo "<td>".$row_result['PRES']."</td>";
         echo "<td>".$row_result['StationNum']."</td>";
         echo "<td><a href='update.php'>修改</a> ";
-        echo "<a href='delete.php'>刪除</a></td>";
+        echo "<a href='delete.php?"
+                        ."chosen_db=obsweather & ObsTime=$row_result[ObsTime] & WDIR=$row_result[WDIR]&"
+                        ."WDSD=$row_result[WDSD] & Temp=$row_result[Temp] & HUMD=$row_result[HUMD] &"
+                        ."PRES=$row_result[PRES] & StationNum=$row_result[StationNum]"
+                        ."'>刪除</a></td>";
         echo "</tr>";
     }
 }
@@ -145,7 +157,10 @@ else if($db_name == "record"){
         echo "<td>".$row_result['R_Date']."</td>";
         echo "<td>".$row_result['R_StationID']."</td>";
         echo "<td><a href='update.php'>修改</a> ";
-        echo "<a href='delete.php'>刪除</a></td>";
+        echo "<a href='delete.php?"
+                        ."chosen_db=record & D_TX=$row_result[D_TX] & D_TN=$row_result[D_TN]&"
+                        ."H24R=$row_result[H24R] & R_Date=$row_result[R_Date] & R_StationID=$row_result[R_StationID]"
+                        ."'>刪除</a></td>";
         echo "</tr>";
     }
 }
@@ -171,7 +186,11 @@ else if($db_name == "station"){
         echo "<td>".$row_result['S_City']."</td>";
         echo "<td>".$row_result['S_Town']."</td>";
         echo "<td><a href='update.php'>修改</a> ";
-        echo "<a href='delete.php'>刪除</a></td>";
+        echo "<a href='delete.php?"
+                        ."chosen_db=station & Lat=$row_result[Lat] & Lon=$row_result[Lon] & LonWGS84=$row_result[LonWGS84]&"
+                        ."LatWGS84=$row_result[LatWGS84] & StationID=$row_result[StationID] & StationName=$row_result[StationName] &"
+                        ."ELEV=$row_result[ELEV] & S_City=$row_result[S_City] & S_Town=$row_result[S_Town]"
+                        ."'>刪除</a></td>";
         echo "</tr>";
     }
 }
