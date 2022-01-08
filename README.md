@@ -4,8 +4,8 @@
 - [題目說明](#題目說明)
 - [資料需求分析](#資料需求分析)
 - [系統功能性分析](#系統功能性分析)
-- [E-R_Diagram](#E-R_Diagram)
-- [Relational_Model](#Relational_Model)
+- [E-R Diagram](#E-R-Diagram)
+- [Relational Model](#Relational-Model)
 - [系統架構](#系統架構)
 - [來源](#來源)
 
@@ -78,10 +78,10 @@
 + 可統計某段時間內某地的降水量和下雨天數
 + 可查詢某日某縣市的最高溫、最低溫 
 
-## E-R_Diagram
+## E-R Diagram
 ![E-R Diagram](ER.png)
 
-## Relational_Model
+## Relational Model
 ![Relational Model](Relational.png)
 
 ## 系統架構
