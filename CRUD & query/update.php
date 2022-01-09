@@ -144,7 +144,9 @@ else{
 <html>
 <head>
 <body>
-    <p><CENTER><h1>Permission denied. Please Contact Administrator ! </h1></CENTER><p>
+    <br></br>
+    <p><CENTER><h1>Permission denied !   <br></br> <br></br>
+       Please Contact Administrator. </h1></CENTER><p>
 </body>
 </head>
 </html>
