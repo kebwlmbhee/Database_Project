@@ -1,4 +1,18 @@
 <?php
+# remove warning 
+error_reporting(0); 
+
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
+
+<?php
     include("connectMySQL.php");
 ?>
  
@@ -10,6 +24,7 @@
 </head>
 
 <body>
+<CENTER><h1>Hi, <?php echo htmlspecialchars($_SESSION["username"]); ?></CENTER></h1>
 <h1 align = "center">自動氣象站</h1>
 
 <!--
@@ -57,7 +72,10 @@
     $total_records = mysqli_num_rows($result);
 ?>
 
-<p align= "center">目前資料筆數：<?php echo $total_records;?>，<a href='create.php'>新增資料</a></p>
+<p align= "center">目前資料筆數：<?php echo $total_records;?> &emsp;
+<a href='create.php'>新增資料</a> &emsp;
+<a href='query.php'>Query</a></p>
+
 
 
 <h2 align = "center"> <?php echo "$db_name"?> </h1>

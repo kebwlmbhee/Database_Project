@@ -1,3 +1,21 @@
+<?php
+# remove warning 
+error_reporting(0); 
+
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+# check account permission
+if($_SESSION["username"] == "kebwlmbhee"){
+
+?>
+ 
+
 
 <html>
 <head>
@@ -5,7 +23,7 @@
     <title>自動氣象站</title>
 <head>
 <body>
-
+<CENTER><h1>Hi, <?php echo htmlspecialchars($_SESSION["username"]); ?></CENTER></h1>
 <form action="" method="post" name="formAdd" id="formAdd">
 <font size="6"><b>自動氣象站</b></font><br><br>
 
@@ -41,76 +59,96 @@
 </html>
 
 <?php
+}
+?>
 
-if (isset($_POST["action"])&&($_POST['action']=="add")){ //check if null number
-    if (!empty($_POST["City"]) && !empty($_POST["lon"])&& !empty($_POST["lat"]) && !empty($_POST["lonWGS84"]) && !empty($_POST["latWGS84"])
-    && !empty($_POST["StationName"]) && !empty($_POST["StationID"]) && !empty($_POST["ELEV"]) && !empty($_POST["Temp"])
-    && !empty($_POST["PRES"]) && !empty($_POST["D_TX"]) && !empty($_POST["D_TN"]) && !empty($_POST["H24R"]) && !empty($_POST["R_Date"]) 
-    && !empty($_POST["CitySn"]) && !empty($_POST["Town"]) && !empty($_POST["TownSn"])){
+
+<?php
+    if (isset($_POST["action"])&&($_POST['action']=="add")){ //check if null number
+        if (!empty($_POST["City"]) && !empty($_POST["lon"])&& !empty($_POST["lat"]) && !empty($_POST["lonWGS84"]) && !empty($_POST["latWGS84"])
+        && !empty($_POST["StationName"]) && !empty($_POST["StationID"]) && !empty($_POST["ELEV"]) && !empty($_POST["Temp"])
+        && !empty($_POST["PRES"]) && !empty($_POST["D_TX"]) && !empty($_POST["D_TN"]) && !empty($_POST["H24R"]) && !empty($_POST["R_Date"]) 
+        && !empty($_POST["CitySn"]) && !empty($_POST["Town"]) && !empty($_POST["TownSn"])){
+            
+            include("connectMysql.php");
+            
+            $StationName= $_POST['StationName'];
+            $StationID = $_POST['StationID'];
+            
+            $infoTime = $_POST['R_Date'];
+
+            $infoDate = $_POST['R_Date'];
+            $date=strtotime($infoDate);
+            $DateforSQL=date("Y-m-d",$date);
+            
+            $City = $_POST['City'];
+            $CitySn = $_POST['CitySn'];
+            $Town = $_POST['Town'];
+            $TownSn = $_POST['TownSn'];
+            $lon = $_POST['lon'];
+            $lat = $_POST['lat'];
+            $lonWGS84 = $_POST['lonWGS84'];
+            $latWGS84 = $_POST['latWGS84'];
+            $ELEV = $_POST['ELEV'];
+            $Temp = $_POST['Temp'];
+            $PRES = $_POST['PRES'];
+            $D_TX = $_POST['D_TX'];
+            $D_TN = $_POST['D_TN'];
+            $H24R = $_POST['H24R'];
+
+            $HUMD = $_POST['HUMD'];
+            $WDIR = $_POST['WDIR'];
+            $WDSD = $_POST['WDSD'];
+            $H_FX = $_POST['H_FX'];
+            $H_XD = $_POST['H_XD'];
+            
+
+            $sql_query = "INSERT INTO station (Lat, Lon, LatWGS84, LonWGS84, StationName, StationID, ELEV, S_City, S_Town) 
+                        VALUES ('$lat', '$lon','$latWGS84', '$lonWGS84', '$StationName', '$StationID', '$ELEV', '$City', '$Town')";
+                        
+            $sql_query2 ="INSERT INTO obsweather (ObsTime, WDIR, WDSD, Temp, HUMD, PRES, StationNum) 
+                        VALUES ('$infoTime', '$WDIR', '$WDSD','$Temp', '$HUMD', '$PRES', '$StationID')";
+
+            $sql_query3 =  "INSERT INTO record (D_TX, D_TN, H24R, R_Date, R_StationID) 
+                        VALUES ('$D_TX', '$D_TN','$H24R','$DateforSQL','$StationID')";
+                        
+            $sql_query4 = "INSERT INTO note (H_FX, H_XD, N_StationID, N_Time) 
+                        VALUES ('$H_FX', '$H_XD', '$StationID','$infoTime')";
         
-        include("connectMysql.php");
-        
-        $StationName= $_POST['StationName'];
-        $StationID = $_POST['StationID'];
-        
-        $infoTime = $_POST['R_Date'];
+            $sql_query5 = "INSERT INTO location (City, CitySn, Town, TownSn) 
+                        VALUES ('$City', '$CitySn', '$Town', '$TownSn')";
 
-        $infoDate = $_POST['R_Date'];
-        $date=strtotime($infoDate);
-        $DateforSQL=date("Y-m-d",$date);
-        
-        $City = $_POST['City'];
-        $CitySn = $_POST['CitySn'];
-        $Town = $_POST['Town'];
-        $TownSn = $_POST['TownSn'];
-        $lon = $_POST['lon'];
-        $lat = $_POST['lat'];
-        $lonWGS84 = $_POST['lonWGS84'];
-        $latWGS84 = $_POST['latWGS84'];
-        $ELEV = $_POST['ELEV'];
-        $Temp = $_POST['Temp'];
-        $PRES = $_POST['PRES'];
-        $D_TX = $_POST['D_TX'];
-        $D_TN = $_POST['D_TN'];
-        $H24R = $_POST['H24R'];
-
-        $HUMD = $_POST['HUMD'];
-        $WDIR = $_POST['WDIR'];
-        $WDSD = $_POST['WDSD'];
-        $H_FX = $_POST['H_FX'];
-        $H_XD = $_POST['H_XD'];
-        
-
-        $sql_query = "INSERT INTO station (Lat, Lon, LatWGS84, LonWGS84, StationName, StationID, ELEV, S_City, S_Town) 
-                    VALUES ('$lat', '$lon','$latWGS84', '$lonWGS84', '$StationName', '$StationID', '$ELEV', '$City', '$Town')";
-                    
-        $sql_query2 ="INSERT INTO obsweather (ObsTime, WDIR, WDSD, Temp, HUMD, PRES, StationNum) 
-                    VALUES ('$infoTime', '$WDIR', '$WDSD','$Temp', '$HUMD', '$PRES', '$StationID')";
-
-        $sql_query3 =  "INSERT INTO record (D_TX, D_TN, H24R, R_Date, R_StationID) 
-                    VALUES ('$D_TX', '$D_TN','$H24R','$DateforSQL','$StationID')";
-                    
-        $sql_query4 = "INSERT INTO note (H_FX, H_XD, N_StationID, N_Time) 
-                    VALUES ('$H_FX', '$H_XD', '$StationID','$infoTime')";
-    
-        $sql_query5 = "INSERT INTO location (City, CitySn, Town, TownSn) 
-                    VALUES ('$City', '$CitySn', '$Town', '$TownSn')";
-
-        $sql_query6 = "INSERT INTO datetime (infoTime, infoDate) 
-                    VALUES ('$infoTime', '$DateforSQL')";
+            $sql_query6 = "INSERT INTO datetime (infoTime, infoDate) 
+                        VALUES ('$infoTime', '$DateforSQL')";
 
 
-        mysqli_query($db_link,$sql_query);
-        mysqli_query($db_link,$sql_query2);
-        mysqli_query($db_link,$sql_query3);
-        mysqli_query($db_link,$sql_query4);
-        mysqli_query($db_link,$sql_query5);
-        mysqli_query($db_link,$sql_query6);
-        
-        header("Location: index.php");
+            mysqli_query($db_link,$sql_query);
+            mysqli_query($db_link,$sql_query2);
+            mysqli_query($db_link,$sql_query3);
+            mysqli_query($db_link,$sql_query4);
+            mysqli_query($db_link,$sql_query5);
+            mysqli_query($db_link,$sql_query6);
+            
+            header("Location: index.php");
+            }
+        else{
+            echo 'not allow null number';
         }
-    else{
-        echo 'not allow null number';
-    }
+}
+
+else{
+
+
+?>
+
+<html>
+<head>
+<body>
+    <p><CENTER><h1>Permission denied. Please Contact Administrator ! </h1></CENTER><p>
+</body>
+</head>
+</html>
+
+<?php
 }
 ?>

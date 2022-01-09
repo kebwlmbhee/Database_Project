@@ -1,9 +1,22 @@
-<?php error_reporting(0); ?>
+<?php
+# remove warning 
+error_reporting(0); 
+
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
+
 <?php
 $host = 'localhost';
-$dbuser = 'jamesong1012';
-$dbpassword = 'l0986661274';
-$dbname = 'weather';
+$dbuser = 'root';
+$dbpassword = '';
+$dbname = 'project';
 $link = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
 
 if ($link) {
@@ -25,6 +38,7 @@ if ($link) {
     <head>
 
     <body>
+        <CENTER><h1>Hi, <?php echo htmlspecialchars($_SESSION["username"]); ?></CENTER></h1>
         <form action="query.php" method="post" name="formAdd" id="formAdd">
             <font size="6"><b>自動氣象站查詢平台</b></font><br><br>
 
