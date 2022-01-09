@@ -1,3 +1,21 @@
+<?php
+# remove warning 
+error_reporting(0); 
+
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+
+# check account permission
+if($_SESSION["username"] == "kebwlmbhee"){
+
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,6 +23,12 @@
     <title>delete_php</title>
   </head>
   <body>
+  <CENTER><h1>Hi, <?php echo htmlspecialchars($_SESSION["username"]); ?></CENTER></h1>
+
+<?php
+}
+?>
+
     <!---資料庫連接 --->
     <?php
     include("connectMySQL.php");
@@ -13,6 +37,10 @@
 
     <!---刪除資料--->
     <?php
+
+    # check account permission
+    if($_SESSION["username"] == "kebwlmbhee"){
+    
            if(isset($_REQUEST["chosen_db"])){
            $act=strval($_REQUEST["chosen_db"]);
            $act=str_replace(' ', '', $act);
@@ -330,8 +358,14 @@
                     break;
                 }  
            }
+        }
 
     ?>
+
+<?php
+# check account permission
+if($_SESSION["username"] == "kebwlmbhee"){
+?>
     <!---返回read.php
     <a href="read.php" οnclick="javascript:location.replace(this.href);event.returnValue=false; ">返回主頁</a>
     --->
@@ -340,6 +374,25 @@
     <input type ="button" onclick="history.back()" value="回到上一頁"></input><br>
 
     <!---刪除資料--->
+<?php
+}
+
+else{
+?>
 </body>
 </html>
+
+
+<html>
+<head>
+<body>
+    <p><CENTER><h1>Permission denied. Please Contact Administrator ! </h1></CENTER><p>
+</body>
+</head>
+</html>
+
+<?php
+}
+?>
+
 
