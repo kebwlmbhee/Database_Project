@@ -136,7 +136,7 @@ if($_SESSION["username"] == "kebwlmbhee"){
         }
 }
 
-else{
+if($_SESSION["username"] != "kebwlmbhee"){
 
 
 ?>
