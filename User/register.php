@@ -137,7 +137,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
                     <label>Confirm Password</label>
                     <input type="password" name="confirm_password" class="form-control" placeholder = "Confirm Password" id="demo_input_2" value="<?php echo $confirm_password; ?>">
-                    <img id="demo_img_2" onclick="hideShowPsw()" src="visible.png">
+                    <img id="demo_img_2" onclick="hideShowPsw_2()" src="visible.png">
                     <span class="help-block"><?php echo $confirm_password_err; ?></span>
                 </div>
                 <div class="form-group">
@@ -153,19 +153,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	// javascript 
 	var demoImg = document.getElementById("demo_img");
 	var demoInput = document.getElementById("demo_input");
-    var demoImg_2 = document.getElementById("demo_img_2");
-	var demoInput_2 = document.getElementById("demo_input_2");
 
     //hidden text block, show password block
 	function hideShowPsw(){
-		if (demoInput.type == "password" || demoInput_2.type == "password") {
+		if (demoInput.type == "password") {
 			demoInput.type = "text";
 			demo_img.src = "invisible.png";
-            demoInput_2.type = "text";
-            demo_img_2.src = "invisible.png";
 		}else {
 			demoInput.type = "password";
 			demo_img.src = "visible.png";
+		}
+	}
+
+    var demoImg_2 = document.getElementById("demo_img_2");
+	var demoInput_2 = document.getElementById("demo_input_2");
+
+    function hideShowPsw_2(){
+		if (demoInput_2.type == "password") {
+            demoInput_2.type = "text";
+			demo_img_2.src = "invisible.png";
+		}else {
             demoInput_2.type = "password";
 			demo_img_2.src = "visible.png";
 		}
