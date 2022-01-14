@@ -1,9 +1,9 @@
 <?php
 
-$db_host = 'mysql5045.site4now.net';
-$db_userName = 'a7f1e3_nccudb';
-$db_password = 'Smarter123456'; 
-$db_name = 'db_a7f1e3_projec';
+$db_host = '127.0.0.1';
+$db_userName = 'root';
+$db_password = ''; 
+$db_name = 'project';
 
 $db_link = @mysqli_connect($db_host, $db_userName, $db_password, $db_name);
 
