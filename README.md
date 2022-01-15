@@ -18,60 +18,60 @@
 ### Station-觀測站：所觀測到的氣象來自不同氣象站，因此需要對不同測站建立table 
 | Attribute | Property |
 | --------- | -------- |
-| Lat-緯度(座標系統採TWD67) | DOUBLE，不可為NULL |
-| Lon-經度(座標系統採TWD67) | DOUBLE，不可為NULL | 
-| LatWGS84-緯度(座標系統採WGS84) | DOUBLE，不可為NULL | 
-| LonWGS84-(座標系統採WGS84) | DOUBLE，不可為NULL | 
-| LocationName-測站名稱 | STRING，不可為NULL，unique | 
-| StationID-測站編號 | STRING，不可為NULL，unique | 
-| ELEV-海拔高度(公尺) | DOUBLE，不可為NULL，positive | 
+| Lat - TWD67 緯度 | DOUBLE, non-null |
+| Lon - TWD67 經度 | DOUBLE, non-null | 
+| LatWGS84 - TWD97/WGS84 緯度 | DOUBLE, non-null | 
+| LonWGS84 - TWD97/WGS84 經度 | DOUBLE, non-null | 
+| LocationName - 測站名稱 | STRING, non-null, unique | 
+| StationID - 測站編號 | STRING, non-null, unique | 
+| ELEV - 海拔高度(公尺) | DOUBLE, non-null, positive | 
 
  
 
 ### ObsWeather-測站觀測之氣象 
 | Attribute | Property |
 | --------- | -------- |
-| WDIR-風向(度) | DOUBLE，0表示無風，大於0表示一般風向，nonnegative | 
-| WDSD-風速(公尺/秒) | DOUBLE，0表示無風，nonnegative | 
-| Temp-溫度(攝氏) | DOUBLE，不可為NULL | 
-| HUMD-相對濕度(百分比) | DOUBLE，max=1，positive | 
-| PRES-測站氣壓(百帕) | DOUBLE，不可為NULL | 
+| WDIR - 風向(度) | DOUBLE, 0 表示無風，大於 0 表示一般風向，non-negative | 
+| WDSD - 風速(公尺/秒) | DOUBLE, 0 表示無風, non-negative | 
+| Temp - 溫度(攝氏) | DOUBLE，non-null | 
+| HUMD - 相對濕度(百分比) | DOUBLE, [0, 1], positive | 
+| PRES - 測站氣壓(百帕) | DOUBLE, non-null | 
 
  
 
 ### Record-當日氣象情況 
 | Attribute | Property |
 | --------- | -------- |
-| D_TX 本日最高溫 | DOUBLE，不可為NULL | 
-| D_TN 本日最低溫 | DOUBLE，不可為NULL | 
-| H24R-日累積雨量 | DOUBLE，可為NULL | 
-| R_Date 當日日期 | DATE，不可為NULL | 
+| D_TX - 本日最高溫 | DOUBLE, non-null | 
+| D_TN - 本日最低溫 | DOUBLE, non-null | 
+| H24R - 日累積雨量 | DOUBLE, can be null | 
+| R_Date - 當日日期 | DATE, non-null | 
 
 
 
 ### Note-小時氣象情況(並非每小時都會回傳，可當作是附加的資料） 
 | Attribute | Property |
 | --------- | -------- |
-| H_FX-小時最大陣風風速 | DOUBLE | 
-| H_XD-小時最大陣風風向 | DOUBLE | 
+| H_FX - 小時最大陣風風速 | DOUBLE | 
+| H_XD - 小時最大陣風風向 | DOUBLE | 
 
 
 
 ### Location-氣象紀錄的地點(縣市、鄉鎮) 
 | Attribute | Property |
 | --------- | -------- |
-| City-縣市 | DOUBLE，不可為NULL | 
-| CitySn-縣市編號 | INTERGER，不可為NULL（非unique) | 
-| Town-鄉鎮 | STRING，不可為NULL | 
-| TownSn-鄉鎮編號 | INTEGER，不可為NULL(非unique) | 
+| City - 縣市 | DOUBLE, non-null | 
+| CitySn - 縣市編號 | INTERGER, non-null, non-unique | 
+| Town - 鄉鎮 | STRING, non-null | 
+| TownSn - 鄉鎮編號 | INTEGER, non-null, non-unique  | 
 
 
 
 ### DateTime-與該紀錄相關聯之時間 
 | Attribute | Property |
 | --------- | -------- |
-| InfoTime-資料代表時間 | DATETIME，不可為NULL | 
-| InfoDate-資料代表日期 | DATE，不可為NULL | 
+| InfoTime - 資料代表時間 | DATETIME, non-null | 
+| InfoDate - 資料代表日期 | DATE, non-null | 
 
 ## 系統功能性分析 
 
