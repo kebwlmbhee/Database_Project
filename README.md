@@ -7,7 +7,8 @@
 - [E-R Diagram](#E-R-Diagram)
 - [Relational Model](#Relational-Model)
 - [系統架構](#系統架構)
-- [來源](#來源)
+- [Reference](#Reference)
+- [資料來源](#資料來源)
 
 
 ## 題目說明 
@@ -85,7 +86,7 @@
 ![Relational Model](Relational.png)
 
 ## 系統架構
-| System   | Schema                       |
+| System   | Architecture                 |
 |----------|------------------------------|
 | 系統功能 | CRUD & Query                 |
 | 開發語言 |  HTML, CSS, javascript, PHP  |
@@ -95,5 +96,39 @@
 
 ![System](System.png)
 
+## Reference
 
-## [來源](https://ticp.motc.gov.tw/ConvergeProj/dataService/viewdata?setId=00974&title=%E8%87%AA%E5%8B%95%E6%B0%A3%E8%B1%A1%E7%AB%99-%E6%B0%A3%E8%B1%A1%E8%A7%80%E6%B8%AC%E8%B3%87%E6%96%99&metadata=00974)
+[登入系統](http://www.tastones.com/zh-tw/tutorial/php/php-mysql-login-system)
+
+[可視/隱藏密碼](https://github.com/jiangxh1992/HTML5InputDemo)
+
+[PHP 與 MySQL 入門](http://web.nuu.edu.tw/~ychwang/962PHP/Ch05-Hwang.pdf)
+
+[HTML-清單](https://ithelp.ithome.com.tw/articles/10239506)
+
+[系統架構](https://drive.google.com/file/d/1RePZHXuMjtmKXMBDZAjX5FZJBWGrhv-c/view)
+
+[XAMPP](https://www.kjnotes.com/devtools/54)
+
+[XAMPP MySQL](https://a091234765.pixnet.net/blog/post/403781468-%5B%E7%B6%B2%E9%A0%81%E6%8A%80%E5%B7%A7%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%5Dxampp-mysql%E7%99%BB%E5%85%A5%E8%A8%AD%E7%BD%AE)
+
+[ngrok](https://www.youtube.com/watch?v=7TeJlvTRa8g)
+
+[CRUD](https://ithelp.ithome.com.tw/articles/10206716)
+
+[CRUD - READ](https://ithelp.ithome.com.tw/articles/10206254)
+
+[Connect to Database](https://ithelp.ithome.com.tw/articles/10206076)
+
+[How to run a SELECT query using Mysqli](https://phpdelusions.net/mysqli_examples/select)
+
+[Mysqli SELECT query with prepared statements](https://phpdelusions.net/mysqli_examples/prepared_select)
+
+[User form search input vs select queries](https://stackoverflow.com/questions/56813530/when-to-use-prepared-statements-in-php-mysqli-user-form-search-input-vs-selec)
+
+
+[How to retain drop down values after submit ?](https://www.daniweb.com/programming/web-development/threads/380050/how-to-retain-drop-down-values-after-submit#post1636019)
+
+## 資料來源
+
+[交通部數據匯流平台 自動氣象站-氣象觀測資料](https://ticp.motc.gov.tw/ConvergeProj/dataService/viewdata?setId=00974&title=%E8%87%AA%E5%8B%95%E6%B0%A3%E8%B1%A1%E7%AB%99-%E6%B0%A3%E8%B1%A1%E8%A7%80%E6%B8%AC%E8%B3%87%E6%96%99&metadata=00974)
