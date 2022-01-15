@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["new_password"]))){
         $new_password_err = "Please enter the new password.";     
     } elseif(strlen(trim($_POST["new_password"])) < 6){
-        $new_password_err = "Password must have atleast 6 characters.";
+        $new_password_err = "Password must have at least 6 characters.";
     } else{
         $new_password = trim($_POST["new_password"]);
     }
@@ -85,8 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="zh-Hant-TW">
 <head>
     <meta charset="UTF-8">
-    <CENTER><h1>Hi, <?php echo htmlspecialchars($_SESSION["username"]); ?></CENTER></h1>
-    <title>Reset Password</title>
+    <CENTER><h1>Reset Password</CENTER></h1>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         body{ font: 18px sans-serif; }
@@ -96,11 +95,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
     <CENTER>
         <div class="wrapper">
-            <h1>Reset Password</h1>
             <br> </br>
-            <br> </br>
-            <br> </br>
-
+            <div>
+                <label>Username</label>
+                <input type="Username" class="form-control" value="<?php echo htmlspecialchars($_SESSION["username"]); ?>" disabled>
+            </div>
+            <br></br>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
                 <div class="form-group <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
                     <label>New Password</label>
