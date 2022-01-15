@@ -88,10 +88,10 @@
 ## 系統架構
 | System   | Architecture                 |
 |----------|------------------------------|
-| 系統功能 | CRUD & Query                 |
+| 系統功能 | CRUD,  Query                 |
 | 開發語言 |  HTML, CSS, javascript, PHP  |
-| DBMS     | MySQL                        |
-| 工具     | XAMPP                        |
+| DBMS     | MySQL(PhpMyAdmin)            |
+| 工具     | XAMPP, ngrok                 |
 | 模組     | Apache Server, MySQL         |
 
 ![System](System.png)
