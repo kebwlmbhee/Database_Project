@@ -34,7 +34,7 @@
 | WDIR - 風向(度) | DOUBLE, 0 表示無風，大於 0 表示一般風向，non-negative | 
 | WDSD - 風速(公尺/秒) | DOUBLE, 0 表示無風, non-negative | 
 | Temp - 溫度(攝氏) | DOUBLE，non-null | 
-| HUMD - 相對濕度(百分比) | DOUBLE, [0, 1], positive | 
+| HUMD - 相對濕度(百分比) | DOUBLE, [0, 1] | 
 | PRES - 測站氣壓(百帕) | DOUBLE, non-null | 
 
  
