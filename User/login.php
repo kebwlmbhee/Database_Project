@@ -67,13 +67,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             header("location: index.php");
                         } else{
                             // Display an error message if password is not valid
-                            $username_err = "Invalid Username or Password";
                             $password_err = "Invalid Username or Password";
                         }
                     }
                 } else{
                     // Display an error message if username doesn't exist
-                    $username_err = "Invalid Username or Password";
                     $password_err = "Invalid Username or Password";
                 }
             } else{
@@ -96,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         width: 40px;
         height: 25px;
         position: relative;
-        top: -40px;
+        top: -30px;
         right: -200px;
     }
 </style>
@@ -117,7 +115,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="wrapper">
             <h1>Login</h1>
             <br> </br>
-            <br> </br>
 
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
@@ -128,15 +125,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                     <label>Password</label>
                     <input type="password" name="password" class="form-control" placeholder = "Password" id="demo_input">
-                    <span class="help-block"><?php echo $password_err; ?></span>
                     <img id="demo_img" onclick="hideShowPsw()" src="visible.png">
+                    <span class="help-block"><?php echo $password_err; ?></span>
 
                 </div>
+                <br> </br>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Login">
                     <br> </br>
-                    <br> </br>
-
                     <br> </br>
 
                 <p> Don't have an account? <a href="register.php" > Sign up now</a>.</p>
