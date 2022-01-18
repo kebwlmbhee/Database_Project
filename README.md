@@ -44,7 +44,7 @@
 | --------- | -------- |
 | D_TX - 本日最高溫 | DOUBLE, non-null | 
 | D_TN - 本日最低溫 | DOUBLE, non-null | 
-| H24R - 日累積雨量 | DOUBLE, can be null | 
+| H24R - 日累積雨量 | DOUBLE | 
 | R_Date - 當日日期 | DATE, non-null | 
 
 
