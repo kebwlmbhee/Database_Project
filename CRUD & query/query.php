@@ -1,12 +1,12 @@
 <?php
 # remove warning 
-error_reporting(0); 
+error_reporting(0);
 
 // Initialize the session
 session_start();
- 
+
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
@@ -38,7 +38,10 @@ if ($link) {
     <head>
 
     <body>
-        <CENTER><h1>Hi, <?php echo htmlspecialchars($_SESSION["username"]); ?></CENTER></h1>
+        <CENTER>
+            <h1>Hi, <?php echo htmlspecialchars($_SESSION["username"]); ?>
+        </CENTER>
+        </h1>
         <form action="query.php" method="post" name="formAdd" id="formAdd">
             <font size="6"><b>自動氣象站查詢平台</b></font><br><br>
 
@@ -149,13 +152,22 @@ if ($link) {
                 $infoDate3 = $_POST['infoDate3'];
                 $City2 = $_POST['City2'];
                 //echo $infoDate2 . " to " . $infoDate3 . $City2;
-                $sql_query2 = "SELECT s_city, s_town, SUM(h24r), COUNT(*) as raining_days
-                FROM record as rec, station as sta
-                WHERE (rec.r_date BETWEEN '$infoDate2' AND '$infoDate3') 
-                    AND sta.s_city = '$City2'
-                    AND sta.stationid = rec.r_stationid
-                    AND rec.h24r != 0
-                GROUP BY s_city, s_town";
+                $sql_query2 = "SELECT t1.s_city, t1.s_town as s_town , sum as amount, raining_days
+                FROM (SELECT s1.s_city, s1.s_town, SUM(h24r) as sum
+                      FROM record as r1, station as s1
+                      WHERE (r1.r_date BETWEEN '$infoDate2' AND '$infoDate3') 
+                          AND s1.s_city = '$City2' 
+                          AND s1.stationid = r1.r_stationid
+                          AND r1.h24r != 0
+                      GROUP BY s1.s_city, s1.s_town) as t1,
+                     (SELECT s2.s_city, s2.s_town, COUNT(DISTINCT(r2.r_date)) as raining_days
+                      FROM record as r2, station as s2
+                      WHERE (r2.r_date BETWEEN '$infoDate2' AND '$infoDate3') 
+                          AND s2.s_city = '$City2' 
+                          AND s2.stationid = r2.r_stationid
+                          AND r2.h24r != 0
+                      GROUP BY s2.s_city, s2.s_town) as t2
+                WHERE t1.s_town = t2.s_town";
 
                 echo "<table border=\"1\">";
 
@@ -175,7 +187,7 @@ if ($link) {
                     while ($row = mysqli_fetch_assoc($result2)) {
                         echo "<tr>";
                         echo "<td>" . $row["s_town"] . "</td>";
-                        echo "<td>" . $row["SUM(h24r)"] . "</td>";
+                        echo "<td>" . $row["amount"] . "</td>";
                         echo "<td>" . $row["raining_days"] . "</td>";
                         echo "</tr>";
                         //echo "Town: " . $row["s_town"] . "<br>" . " 降水量: " . $row["SUM(h24r)"] . " (mm)" .
@@ -197,17 +209,12 @@ if ($link) {
 
 /*
 if (isset($_POST["button1"]) && ($_POST['button1'] == "搜尋")) {
-
-
     $infoDate = $_POST['infoDate'];
     $City = $_POST['City'];
-
     $sql_query = "SELECT City, min(Temp), max(Temp), infoDate, HUMD
                   FROM location, weather, datetime
                   WHERE City='City' and infoDate='infoDate'";
-
     $result = mysqli_query($link, $sql_query);
-
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             echo "City: " . $row["City"] . "<br>" . " infoDate: " . $row["infoDate"] .
@@ -216,21 +223,14 @@ if (isset($_POST["button1"]) && ($_POST['button1'] == "搜尋")) {
         }
     }
 }
-
 if (isset($_POST["button2"]) && ($_POST['button2'] == "搜尋")) {
-
-
     $infoDate2 = $_POST['infoDate2'];
     $infoDate3 = $_POST['infoDate3'];
     $City2 = $_POST['City2'];
-
-
     $sql_query2 = "SELECT City, sum(H24R), count(H24R)
                    FROM location, record, datetime
                    WHERE City='City' and infoDate between 'infoDate2' and 'infoDate3'";
-
     $result2 = mysqli_query($link, $sql_query2);
-
     if (mysqli_num_rows($result2) > 0) {
         while ($row = mysqli_fetch_assoc($result2)) {
             echo "City: " . $row["City"] . "<br>" . " 降水量: " . $row["sum(H24R)"] .
