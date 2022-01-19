@@ -128,7 +128,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <input type="password" name="password" class="form-control" placeholder = "Password" id="demo_input">
                     <img id="demo_img" onclick="hideShowPsw()" src="visible.png">
                     <span class="help-block"><?php echo $password_err; ?></span>
-
                 </div>
                 <br> </br>
                 <div class="form-group">
