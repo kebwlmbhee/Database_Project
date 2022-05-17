@@ -13,14 +13,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 ?>
 
 <?php
-$host = 'localhost';
-$dbuser = 'root';
-$dbpassword = '';
-$dbname = 'project';
-$link = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+include("connectMysql.php");
 
-if ($link) {
-    mysqli_query($link, 'SET NAMES utf8mb4');
+if ($db_link) {
+    mysqli_query($db_link, 'SET NAMES utf8mb4');
     // echo "正確連接資料庫";
 } else {
     echo "不正確連接資料庫</br>" . mysqli_connect_error();
@@ -55,7 +51,7 @@ if ($link) {
                 $sql = "SELECT DISTINCT city
                     FROM location
                     ORDER BY city"; //DISTINCT可選出欄位中具有不同名稱的資料，本例中會挑出TV與Player
-                $result = mysqli_query($link, $sql) or die("資料選取錯誤！" . mysqli_error($link));
+                $result = mysqli_query($db_link, $sql) or die("資料選取錯誤！" . mysqli_error($db_link));
                 while ($data = mysqli_fetch_assoc($result)) {
                 ?>
                     <option value="<?= $data['city'] ?>"><?= $data['city'] ?></option>
@@ -100,7 +96,7 @@ if ($link) {
                 GROUP BY s_city, s_town
                 ORDER BY s_town";
 
-                $result = mysqli_query($link, $sql_query);
+                $result = mysqli_query($db_link, $sql_query);
 
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -134,7 +130,7 @@ if ($link) {
                 $sql = "SELECT DISTINCT city
                     FROM location
                     ORDER BY city"; //DISTINCT可選出欄位中具有不同名稱的資料，本例中會挑出TV與Player
-                $result = mysqli_query($link, $sql) or die("資料選取錯誤！" . mysqli_error($link));
+                $result = mysqli_query($db_link, $sql) or die("資料選取錯誤！" . mysqli_error($db_link));
                 while ($data = mysqli_fetch_assoc($result)) {
                 ?>
                     <option value="<?= $data['city'] ?>"><?= $data['city'] ?></option>
@@ -181,7 +177,7 @@ if ($link) {
                 echo "<th>下雨天數 (天)</th>";
                 echo "</tr>";
 
-                $result2 = mysqli_query($link, $sql_query2);
+                $result2 = mysqli_query($db_link, $sql_query2);
 
                 if (mysqli_num_rows($result2) > 0) {
                     while ($row = mysqli_fetch_assoc($result2)) {
@@ -214,7 +210,7 @@ if (isset($_POST["button1"]) && ($_POST['button1'] == "搜尋")) {
     $sql_query = "SELECT City, min(Temp), max(Temp), infoDate, HUMD
                   FROM location, weather, datetime
                   WHERE City='City' and infoDate='infoDate'";
-    $result = mysqli_query($link, $sql_query);
+    $result = mysqli_query($db_link, $sql_query);
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             echo "City: " . $row["City"] . "<br>" . " infoDate: " . $row["infoDate"] .
@@ -230,7 +226,7 @@ if (isset($_POST["button2"]) && ($_POST['button2'] == "搜尋")) {
     $sql_query2 = "SELECT City, sum(H24R), count(H24R)
                    FROM location, record, datetime
                    WHERE City='City' and infoDate between 'infoDate2' and 'infoDate3'";
-    $result2 = mysqli_query($link, $sql_query2);
+    $result2 = mysqli_query($db_link, $sql_query2);
     if (mysqli_num_rows($result2) > 0) {
         while ($row = mysqli_fetch_assoc($result2)) {
             echo "City: " . $row["City"] . "<br>" . " 降水量: " . $row["sum(H24R)"] .
